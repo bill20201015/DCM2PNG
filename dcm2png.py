@@ -37,13 +37,12 @@ def convert_dcm_jpg(name):
 #png_save_dir 图片保存位置
 def dcm2png(dcm_dir, png_save_dir):
 
-    dcm = pydicom.dcmread(dcm_dir)
-
-    image = dcm.pixel_array
-
+    dcm = pydicom.read_file(dcm_dir)
+    img = dcm.pixel_array
+    print(img.shape)
     plt.figure()
-    plt.imshow(image, cmap=plt.cm.bone)
+    plt.imshow(img, cmap=plt.cm.bone)
     plt.axis('off')
     plt.savefig(png_save_dir + '/fake_images-{}.png'.format(1))
-
+    plt.show()
 
